@@ -6,46 +6,46 @@ void chess_board(int tr, int tc, int dr, int dc, int size)
 {
 	if (size == 1)
 		return;
-	int t = tile++;   //LĞÍ¹ÇÅÆºÅ
-	int sz = size / 2;    //¶ÔÆåÅÌ½øĞĞ·Ö¸î 
-	//¸²¸Ç×óÉÏ½Ç×ÓÆåÅÌ
-	if (dr < tr + sz && dc < tc + sz)  //ÌØÊâ·½¸ñÔÚ´ËÆåÅÌÖĞ
+	int t = tile++;   //Lå‹éª¨ç‰Œå·
+	int sz = size / 2;    //å¯¹æ£‹ç›˜è¿›è¡Œåˆ†å‰² 
+	//è¦†ç›–å·¦ä¸Šè§’å­æ£‹ç›˜
+	if (dr < tr + sz && dc < tc + sz)  
 		chess_board(tr, tc, dr, dc, sz);
 	else{
 		board[tr + sz - 1][tc + sz - 1] = t;
 		chess_board(tr, tc, tr + sz - 1, tc + sz - 1, sz);
 	}
-	//¸²¸ÇÓÒÉÏ½Ç×ÓÆåÅÌ 
-	if (dr < tr + sz && dc >= tc + sz)   //ÌØÊâ·½¸ñÔÚ´ËÆåÅÌÖĞ
+	//è¦†ç›–å³ä¸Šè§’å­æ£‹ç›˜ 
+	if (dr < tr + sz && dc >= tc + sz)   
 		chess_board(tr, tc + sz, dr, dc, sz);
 	else{
 		board[tr + sz - 1][tc + sz] = t;
 		chess_board(tr, tc + sz, tr + sz - 1, tc + sz, sz);
 	}
 
-	//¸²¸Ç×óÏÂ½Ç×ÓÆåÅÌ 
-	if (dr >= tr + sz && dc < tc + sz)   //ÌØÊâ·½¸ñÔÚ´ËÆåÅÌÖĞ  
+	//è¦†ç›–å·¦ä¸‹è§’å­æ£‹ç›˜ 
+	if (dr >= tr + sz && dc < tc + sz)  
 		chess_board(tr + sz, tc, dr, dc, sz);
 	else{
 		board[tr + sz][tc + sz - 1] = t;
 		chess_board(tr + sz, tc, tr + sz, tc + sz - 1, sz);
 	}
 
-	//¸²¸ÇÓÒÏÂ½Ç×ÓÆåÅÌ  
-	if (dr >= tr + sz && dc >= tc + sz)  //ÌØÊâ·½¸ñÔÚ´ËÆåÅÌÖĞ
+	//è¦†ç›–å³ä¸‹è§’å­æ£‹ç›˜  
+	if (dr >= tr + sz && dc >= tc + sz)  
 		chess_board(tr + sz, tc + sz, dr, dc, sz);
 	else{
-		board[tr + sz][tc + sz] = t;                       //±ê¼ÇÒ»¸ö¼ÙÉèµÄÌØÊâµã  
-		chess_board(tr + sz, tc + sz, tr + sz, tc + sz, sz);   //µİ¹é¸Ã²¿·Ö  
+		board[tr + sz][tc + sz] = t;                       //æ ‡è®°ä¸€ä¸ªå‡è®¾çš„ç‰¹æ®Šç‚¹  
+		chess_board(tr + sz, tc + sz, tr + sz, tc + sz, sz);   //é€’å½’è¯¥éƒ¨åˆ†  
 	}
 }
 
 void print_chess_board()
 {
-	   //×ó¶ÔÆë  
+	   //å·¦å¯¹é½  
 	for (int i = 0; i<BOARD_SZ; ++i){
 		for (int j = 0; j<BOARD_SZ; ++j){
-			cout.width(3);    //´òÓ¡¿í¶ÈÎª3  
+			cout.width(3);    //æ‰“å°å®½åº¦ä¸º3  
 			cout << board[i][j];
 		}
 		cout << endl;
